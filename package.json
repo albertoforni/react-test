@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next",
     "test": "jest",
-    "test:dev": "jest --watch"
+    "test:dev": "jest --watch",
+    "lint": "eslint -c .eslintrc.js components pages"
   },
   "dependencies": {
     "next": "^2.1.1",

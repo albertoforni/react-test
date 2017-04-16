@@ -1,5 +1,7 @@
+/* eslint-env jest */
 import React from 'react';
 import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import Dropdown from './index';
 
@@ -8,59 +10,72 @@ import Dropdown from './index';
 describe('Dropdown', () => {
   const defaultProps = {
     options: [
-      { id: 8, text: 'Conte' },
-      { id: 10, text: 'Del Piero' },
-      { id: 1, text: 'Buffon' },
+      { id: '8', text: 'Conte' },
+      { id: '10', text: 'Del Piero' },
+      { id: '1', text: 'Buffon' },
     ],
-    selected: 10,
+    selected: '10',
     onChange: () => { },
   };
 
-  it('renders a list of options', () => {
-    const options = [
-      { id: 10, text: 'Del Piero' },
-      { id: 21, text: 'Dybala' },
-    ];
+  describe('element testing', () => {
+    it('renders a list of options', () => {
+      const options = [
+        { id: '10', text: 'Del Piero' },
+        { id: '21', text: 'Dybala' },
+      ];
 
-    const component = shallow(
-      <Dropdown
-        {...defaultProps}
-        options={options}
-      />
-    );
+      const component = shallow(
+        <Dropdown
+          {...defaultProps}
+          options={options}
+        />);
 
-    expect(component.find('option').length).toBe(2);
-    expect(component.find('option').first().text()).toEqual(options[0].text);
-    expect(component.find('option').last().text()).toEqual(options[1].text);
+      const optionTags = component.find('option');
+      expect(optionTags.length).toBe(2);
+      expect(optionTags.at(0).text()).toEqual(options[0].text);
+      expect(optionTags.at(1).text()).toEqual(options[1].text);
+    });
+
+    it('displays the text for the selected value', () => {
+      const component = shallow(
+        <Dropdown
+          {...defaultProps}
+          selected="1"
+        />);
+
+      expect(component.find('select').prop('value')).toEqual('1');
+    });
+
+    it('calls onChange with the new value', () => {
+      const onChange = jest.fn();
+
+      const component = shallow(
+        <Dropdown
+          {...defaultProps}
+          onChange={onChange}
+        />);
+      component.find('select').simulate('change', { target: { value: '123' } });
+
+      expect(onChange.mock.calls.length).toBe(1);
+      expect(onChange).toBeCalledWith('123');
+    });
   });
 
-  it('displays the text for the selected value', () => {
-    const component = shallow(
-      <Dropdown
-        {...defaultProps}
-        selected={1}
-      />
-    );
+  describe('snapshot testing', () => {
+    it('renders a list of options', () => {
+      const options = [
+        { id: '10', text: 'Del Piero' },
+        { id: '21', text: 'Dybala' },
+      ];
 
-    expect(component.find('select').prop('value')).toEqual(1);
-  });
+      const tree = renderer.create(
+        <Dropdown
+          {...defaultProps}
+          options={options}
+        />).toJSON();
 
-  it('calls onChange with the new value', () => {
-    const options = [
-      ...defaultProps,
-      { id: 8, text: 'Marchisio' },
-    ];
-    const onChange = jest.fn();
-
-    const component = shallow(
-      <Dropdown
-        {...defaultProps}
-        onChange={onChange}
-      />
-    );
-    component.find('select').simulate('change', { target: { value: 8 } });
-
-    expect(onChange.mock.calls.length).toBe(1);
-    expect(onChange).toBeCalledWith(8);
+      expect(tree).toMatchSnapshot();
+    });
   });
 });
