@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown snapshot testing user can select options 1`] = `
+<form>
+  <div
+    className="t-selected-options"
+  >
+    Buffon, Pirlo
+  </div>
+  <select
+    className="t-select"
+    onChange={[Function]}
+  >
+    <option
+      className="t-option"
+      value="8"
+    >
+      Conte
+    </option>
+    <option
+      className="t-option"
+      value="10"
+    >
+      Del Piero
+    </option>
+    <option
+      className="t-option"
+      value="1"
+    >
+      Buffon
+    </option>
+    <option
+      className="t-option"
+      value="21"
+    >
+      Pirlo
+    </option>
+  </select>
+  <div>
+    <button
+      className="t-reset"
+      onClick={[Function]}
+      type="reset"
+    >
+      Clear
+    </button>
+    <button
+      className="t-submit"
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
+
+exports[`Dropdown snapshot testing user can select options 2`] = `
+<form>
+  <div
+    className="t-selected-options"
+  >
+    Buffon, Pirlo, Del Piero
+  </div>
+  <select
+    className="t-select"
+    onChange={[Function]}
+  >
+    <option
+      className="t-option"
+      value="8"
+    >
+      Conte
+    </option>
+    <option
+      className="t-option"
+      value="10"
+    >
+      Del Piero
+    </option>
+    <option
+      className="t-option"
+      value="1"
+    >
+      Buffon
+    </option>
+    <option
+      className="t-option"
+      value="21"
+    >
+      Pirlo
+    </option>
+  </select>
+  <div>
+    <button
+      className="t-reset"
+      onClick={[Function]}
+      type="reset"
+    >
+      Clear
+    </button>
+    <button
+      className="t-submit"
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
+
+exports[`Dropdown snapshot testing user can select options 3`] = `
+<form>
+  <div
+    className="t-selected-options"
+  />
+  <select
+    className="t-select"
+    onChange={[Function]}
+  >
+    <option
+      className="t-option"
+      value="8"
+    >
+      Conte
+    </option>
+    <option
+      className="t-option"
+      value="10"
+    >
+      Del Piero
+    </option>
+    <option
+      className="t-option"
+      value="1"
+    >
+      Buffon
+    </option>
+    <option
+      className="t-option"
+      value="21"
+    >
+      Pirlo
+    </option>
+  </select>
+  <div>
+    <button
+      className="t-reset"
+      onClick={[Function]}
+      type="reset"
+    >
+      Clear
+    </button>
+    <button
+      className="t-submit"
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;

@@ -46,20 +46,6 @@ describe('Dropdown', () => {
 
       expect(component.find('select').prop('value')).toEqual('1');
     });
-
-    it('calls onChange with the new value', () => {
-      const onChange = jest.fn();
-
-      const component = shallow(
-        <Dropdown
-          {...defaultProps}
-          onChange={onChange}
-        />);
-      component.find('select').simulate('change', { target: { value: '123' } });
-
-      expect(onChange.mock.calls.length).toBe(1);
-      expect(onChange).toBeCalledWith('123');
-    });
   });
 
   describe('snapshot testing', () => {
@@ -77,5 +63,19 @@ describe('Dropdown', () => {
 
       expect(tree).toMatchSnapshot();
     });
+  });
+
+  it('calls onChange with the new value', () => {
+    const onChange = jest.fn();
+
+    const component = shallow(
+      <Dropdown
+        {...defaultProps}
+        onChange={onChange}
+      />);
+    component.find('select').simulate('change', { target: { value: '123' } });
+
+    expect(onChange.mock.calls.length).toBe(1);
+    expect(onChange).toBeCalledWith('123');
   });
 });
