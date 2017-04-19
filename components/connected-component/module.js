@@ -1,23 +1,44 @@
+import request from 'superagent';
 
-const INCREMENT = 'counter/INCREMENT';
-export const increment = () => ({
-  type: INCREMENT,
-});
+import CONFIG from '../../config.json';
 
-const DECREMENT = 'counter/DECREMENT';
-export const decrement = () => ({
-  type: DECREMENT,
-});
+const LOADING = 'counter/LOADING';
+const QUOTE = 'counter/QUOTE';
+export const fetchQuote = () => (dispatch) => {
+  dispatch({
+    type: LOADING,
+  });
 
-export const counterReducer = (state = 0, action) => {
+  request.get('https://andruxnet-random-famous-quotes.p.mashape.com/')
+    .set('X-Mashape-Key', CONFIG.API_KEY)
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    .set('Accept', 'application/json')
+    .then((res) => {
+      dispatch({
+        type: QUOTE,
+        payload: JSON.parse(res.text),
+      });
+    });
+};
+
+export const quoteReducer = (state = { loading: false }, action) => {
   switch (action.type) {
-    case INCREMENT:
-      return state + 1;
-    case DECREMENT:
-      return state - 1;
+    case LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case QUOTE:
+      return {
+        ...state,
+        quote: action.payload.quote,
+        author: action.payload.author,
+        loading: false,
+      };
+    // TODO ERROR
     default:
       return state;
   }
 };
 
-export const getCounterValue = state => state.counter;
+export const getQuote = state => state.quote;

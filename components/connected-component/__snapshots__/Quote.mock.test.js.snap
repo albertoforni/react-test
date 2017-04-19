@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quote journey with snapshot renders a quote 1`] = `
+<Quote
+  onFetchQuote={[Function]}
+  quote={
+    Object {
+      "loading": false,
+    }
+  }
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+>
+  <div>
+    <button
+      className="t-fetch-quote"
+      onClick={[Function]}
+    >
+      Show a quote
+    </button>
+  </div>
+</Quote>
+`;
+
+exports[`Quote journey with snapshot renders a quote 2`] = `
+<Quote
+  onFetchQuote={[Function]}
+  quote={
+    Object {
+      "loading": true,
+    }
+  }
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+>
+  <div>
+    <button
+      className="t-fetch-quote"
+      onClick={[Function]}
+    >
+      Show a quote
+    </button>
+    <p
+      className="t-quote"
+    >
+      Loading
+    </p>
+  </div>
+</Quote>
+`;
+
+exports[`Quote journey with snapshot renders a quote 3`] = `
+<Quote
+  onFetchQuote={[Function]}
+  quote={
+    Object {
+      "author": "baz",
+      "loading": false,
+      "quote": "foo",
+    }
+  }
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+>
+  <div>
+    <button
+      className="t-fetch-quote"
+      onClick={[Function]}
+    >
+      Show a quote
+    </button>
+    <quote
+      className="t-quote"
+    >
+      foo
+      , 
+      baz
+    </quote>
+  </div>
+</Quote>
+`;
