@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Select from '../components/stateful-component/Select';
+import Layout from '../components/Layout';
 
 class Values extends React.Component {
   constructor(props) {
@@ -16,12 +18,12 @@ class Values extends React.Component {
 
   render() {
     return (
-      <div>
+      <Layout>
         <Select
           options={this.state.options}
           onSubmit={() => {}}
         />
-      </div>
+      </Layout>
     );
   }
 }

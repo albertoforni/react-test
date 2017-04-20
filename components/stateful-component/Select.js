@@ -44,8 +44,8 @@ class Dropdown extends React.Component {
     const selectedOptions = getSelectedTextByValues(this.props.options, this.state.selected);
     return (
       <form>
-        <div className="t-selected-options">{selectedOptions}</div>
-        <select className="t-select" onChange={this.onChange}>
+        <div className="select-options t-selected-options">{selectedOptions}</div>
+        <select className="select t-select" onChange={this.onChange}>
           {this.props.options.map(o =>
             <option className="t-option" key={o.id} value={o.id}>{o.text}</option>,
           )}

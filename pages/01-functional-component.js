@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Dropdown from '../components/functional-component/Dropdown';
+import Layout from '../components/Layout';
 
 class Values extends React.Component {
   constructor(props) {
@@ -25,13 +27,13 @@ class Values extends React.Component {
 
   render() {
     return (
-      <div>
+      <Layout>
         <Dropdown
           options={this.state.options}
           selected={this.state.selected}
           onChange={this.onChange}
         />
-      </div>
+      </Layout>
     );
   }
 }

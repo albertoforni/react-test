@@ -38,12 +38,16 @@ exports[`Quote journey with snapshot loads and renders a quote 1`] = `
   }
 >
   <div>
-    <button
-      className="t-fetch-quote"
-      onClick={[Function]}
+    <div
+      className="buttons"
     >
-      Show a quote
-    </button>
+      <button
+        className="t-fetch-quote"
+        onClick={[Function]}
+      >
+        Show a quote
+      </button>
+    </div>
   </div>
 </Quote>
 `;
@@ -86,14 +90,18 @@ exports[`Quote journey with snapshot loads and renders a quote 2`] = `
   }
 >
   <div>
-    <button
-      className="t-fetch-quote"
-      onClick={[Function]}
+    <div
+      className="buttons"
     >
-      Show a quote
-    </button>
+      <button
+        className="t-fetch-quote"
+        onClick={[Function]}
+      >
+        Show a quote
+      </button>
+    </div>
     <p
-      className="t-quote"
+      className="quote t-quote"
     >
       Loading
     </p>
@@ -141,19 +149,23 @@ exports[`Quote journey with snapshot loads and renders a quote 3`] = `
   }
 >
   <div>
-    <button
-      className="t-fetch-quote"
-      onClick={[Function]}
+    <div
+      className="buttons"
     >
-      Show a quote
-    </button>
-    <quote
-      className="t-quote"
+      <button
+        className="t-fetch-quote"
+        onClick={[Function]}
+      >
+        Show a quote
+      </button>
+    </div>
+    <blockquote
+      className="quote t-quote"
     >
       foo
       , 
       baz
-    </quote>
+    </blockquote>
   </div>
 </Quote>
 `;

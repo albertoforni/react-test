@@ -2,7 +2,7 @@
 
 exports[`Dropdown snapshot testing renders a list of options and a value 1`] = `
 <select
-  className="t-select"
+  className="select t-select"
   onChange={[Function]}
   value="21"
 >

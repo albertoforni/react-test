@@ -3,12 +3,12 @@
 exports[`Select snapshot testing selects options 1`] = `
 <form>
   <div
-    className="t-selected-options"
+    className="select-options t-selected-options"
   >
     Buffon, Pirlo
   </div>
   <select
-    className="t-select"
+    className="select t-select"
     onChange={[Function]}
   >
     <option
@@ -58,12 +58,12 @@ exports[`Select snapshot testing selects options 1`] = `
 exports[`Select snapshot testing selects options 2`] = `
 <form>
   <div
-    className="t-selected-options"
+    className="select-options t-selected-options"
   >
     Buffon, Pirlo, Del Piero
   </div>
   <select
-    className="t-select"
+    className="select t-select"
     onChange={[Function]}
   >
     <option
@@ -113,10 +113,10 @@ exports[`Select snapshot testing selects options 2`] = `
 exports[`Select snapshot testing selects options 3`] = `
 <form>
   <div
-    className="t-selected-options"
+    className="select-options t-selected-options"
   />
   <select
-    className="t-select"
+    className="select t-select"
     onChange={[Function]}
   >
     <option

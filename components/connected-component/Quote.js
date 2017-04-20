@@ -6,11 +6,13 @@ import { getQuote, fetchQuote } from './module';
 
 const Quote = ({ quote, onFetchQuote }) => (
   <div>
-    <button className="t-fetch-quote" onClick={onFetchQuote}>Show a quote</button>
-    {quote.loading ? <p className="t-quote">Loading</p> : null}
+    <div className="buttons">
+      <button className="t-fetch-quote" onClick={onFetchQuote}>Show a quote</button>
+    </div>
+    {quote.loading ? <p className="quote t-quote">Loading</p> : null}
     {
-      quote.quote
-        ? <quote className="t-quote">{quote.quote}, {quote.author}</quote>
+      !quote.loading && quote.quote
+        ? <blockquote className="quote t-quote">{quote.quote}, {quote.author}</blockquote>
         : null
     }
   </div>
