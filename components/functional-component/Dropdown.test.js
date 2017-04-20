@@ -45,23 +45,6 @@ describe('Dropdown', () => {
     });
   });
 
-  describe('snapshot testing', () => {
-    it('renders a list of options', () => {
-      const options = [
-        { id: '10', text: 'Del Piero' },
-        { id: '21', text: 'Dybala' },
-      ];
-
-      const wrapper = shallow(
-        <Dropdown
-          {...defaultProps}
-          options={options}
-        />);
-
-      expect(wrapper).toMatchSnapshot();
-    });
-  });
-
   it('calls onChange with the new value', () => {
     const onChange = jest.fn();
 
@@ -74,5 +57,23 @@ describe('Dropdown', () => {
 
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange).toBeCalledWith('123');
+  });
+
+  describe('snapshot testing', () => {
+    it('renders a list of options and a value', () => {
+      const options = [
+        { id: '10', text: 'Del Piero' },
+        { id: '21', text: 'Dybala' },
+      ];
+
+      const wrapper = shallow(
+        <Dropdown
+          {...defaultProps}
+          options={options}
+          selected="21"
+        />);
+
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

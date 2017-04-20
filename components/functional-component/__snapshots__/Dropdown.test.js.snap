@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown snapshot testing renders a list of options 1`] = `
+exports[`Dropdown snapshot testing renders a list of options and a value 1`] = `
 <select
   className="t-select"
   onChange={[Function]}
-  value="10"
+  value="21"
 >
   <option
     className="t-option"
