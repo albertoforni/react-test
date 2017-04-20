@@ -40,12 +40,15 @@ describe('Quote', () => {
 
   // Test that the action creator is connected to the component
   it('calls fetchQuote when the "Get Quote" button is clicked', () => {
-    QuoteModule.fetchQuote = jest.fn().mockReturnValue({ type: 'TEST' });
+    const testFetchAction = { type: 'TEST_FETCH' };
+    QuoteModule.fetchQuote = jest.fn().mockReturnValue(testFetchAction);
+    store.dispatch = jest.fn();
 
     const wrapper = mount(<Quote store={store} />);
 
     wrapper.find('.t-fetch-quote').simulate('click');
     expect(QuoteModule.fetchQuote.mock.calls.length).toEqual(1);
     expect(QuoteModule.fetchQuote).toBeCalledWith();
+    expect(store.dispatch).toBeCalledWith(testFetchAction);
   });
 });

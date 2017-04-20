@@ -49,33 +49,39 @@ describe('Quote', () => {
 
   // Test that the action creator is connected to the component
   it('calls fetchQuote when the "Get Quote" button is clicked', () => {
-    QuoteModule.fetchQuote.mockImplementation(() => ({ type: 'TEST' }));
+    const testFetchAction = { type: 'TEST_FETCH' };
+    QuoteModule.fetchQuote.mockImplementation(() => testFetchAction);
+    store.dispatch = jest.fn();
 
     const wrapper = mount(<Quote store={store} />);
     wrapper.find('.t-fetch-quote').simulate('click');
 
     expect(QuoteModule.fetchQuote.mock.calls.length).toEqual(1);
     expect(QuoteModule.fetchQuote).toBeCalledWith();
+    expect(store.dispatch).toBeCalledWith(testFetchAction);
   });
 
   describe('journey with snapshot', () => {
     it('renders a quote', () => {
-      const wrapper = mount(<Quote store={store} />);
-      expect(toJson(wrapper.find('Quote'))).toMatchSnapshot();
-
       QuoteModule.getQuote
       .mockImplementationOnce(() => ({
+        loading: false,
+      }))
+      .mockImplementationOnce(() => ({
         loading: true,
-      }));
-      wrapper.find('.t-fetch-quote').simulate('click');
-      expect(toJson(wrapper.find('Quote'))).toMatchSnapshot();
-
-      QuoteModule.getQuote
+      }))
       .mockImplementationOnce(() => ({
         quote: 'foo',
         author: 'baz',
         loading: false,
       }));
+
+      const wrapper = mount(<Quote store={store} />);
+      expect(toJson(wrapper.find('Quote'))).toMatchSnapshot();
+
+      wrapper.find('.t-fetch-quote').simulate('click');
+      expect(toJson(wrapper.find('Quote'))).toMatchSnapshot();
+
       wrapper.find('.t-fetch-quote').simulate('click');
       expect(toJson(wrapper.find('Quote'))).toMatchSnapshot();
     });
