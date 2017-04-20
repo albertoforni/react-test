@@ -22,26 +22,26 @@ describe('Dropdown', () => {
         { id: '21', text: 'Dybala' },
       ];
 
-      const component = shallow(
+      const wrapper = shallow(
         <Dropdown
           {...defaultProps}
           options={options}
         />);
 
-      const optionTags = component.find('.t-option');
+      const optionTags = wrapper.find('.t-option');
       expect(optionTags.length).toBe(2);
-      expect(optionTags.at(0).text()).toEqual(options[0].text);
-      expect(optionTags.at(1).text()).toEqual(options[1].text);
+      expect(optionTags.at(0).text()).toBe(options[0].text);
+      expect(optionTags.at(1).text()).toBe(options[1].text);
     });
 
     it('displays the text for the selected value', () => {
-      const component = shallow(
+      const wrapper = shallow(
         <Dropdown
           {...defaultProps}
           selected="1"
         />);
 
-      expect(component.find('.t-select').prop('value')).toEqual('1');
+      expect(wrapper.find('.t-select').prop('value')).toBe('1');
     });
   });
 
@@ -65,12 +65,12 @@ describe('Dropdown', () => {
   it('calls onChange with the new value', () => {
     const onChange = jest.fn();
 
-    const component = shallow(
+    const wrapper = shallow(
       <Dropdown
         {...defaultProps}
         onChange={onChange}
       />);
-    component.find('.t-select').simulate('change', { target: { value: '123' } });
+    wrapper.find('.t-select').simulate('change', { target: { value: '123' } });
 
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange).toBeCalledWith('123');

@@ -21,44 +21,44 @@ describe('Select', () => {
         { id: '21', text: 'Dybala' },
       ];
 
-      const component = shallow(
+      const wrapper = shallow(
         <Select
           {...defaultProps}
           options={options}
         />);
 
-      const optionTags = component.find('.t-option');
+      const optionTags = wrapper.find('.t-option');
       expect(optionTags.length).toBe(2);
-      expect(optionTags.at(0).text()).toEqual(options[0].text);
-      expect(optionTags.at(1).text()).toEqual(options[1].text);
-      expect(component.find('.t-selected-options').text()).toBe('');
+      expect(optionTags.at(0).text()).toBe(options[0].text);
+      expect(optionTags.at(1).text()).toBe(options[1].text);
+      expect(wrapper.find('.t-selected-options').text()).toBe('');
     });
 
     it('renders the selected option', () => {
-      const component = shallow(
+      const wrapper = shallow(
         <Select
           {...defaultProps}
           selected={['10']}
         />);
 
-      expect(component.find('.t-selected-options').text()).toBe('Del Piero');
+      expect(wrapper.find('.t-selected-options').text()).toBe('Del Piero');
 
-      component.find('.t-select').simulate('change', { target: { value: '1' } });
-      expect(component.find('.t-selected-options').text()).toBe('Del Piero, Buffon');
+      wrapper.find('.t-select').simulate('change', { target: { value: '1' } });
+      expect(wrapper.find('.t-selected-options').text()).toBe('Del Piero, Buffon');
     });
 
     describe('DONTS', () => {
       it('displays the selected items by changing state', () => {
-        const component = shallow(
+        const wrapper = shallow(
           <Select
             {...defaultProps}
             selected={['10']}
           />);
 
-        expect(component.find('.t-selected-options').text()).toBe('Del Piero');
+        expect(wrapper.find('.t-selected-options').text()).toBe('Del Piero');
 
-        component.setState({ selected: ['1', '10'] });
-        expect(component.find('.t-selected-options').text()).toBe('Buffon, Del Piero');
+        wrapper.setState({ selected: ['1', '10'] });
+        expect(wrapper.find('.t-selected-options').text()).toBe('Buffon, Del Piero');
       });
     });
   });
@@ -88,7 +88,7 @@ describe('Select', () => {
 
       wrapper.find('.t-submit').simulate('click');
 
-      expect(onSubmit.mock.calls.length).toEqual(1);
+      expect(onSubmit.mock.calls.length).toBe(1);
       expect(onSubmit).toBeCalledWith(['1', '21', '10']);
 
       wrapper.find('.t-reset').simulate('click');
@@ -107,7 +107,7 @@ describe('Select', () => {
 
       wrapper.find('.t-reset').simulate('click');
 
-      expect(wrapper.find('.t-selected-options').text()).toEqual('');
+      expect(wrapper.find('.t-selected-options').text()).toBe('');
     });
 
     it('returns the new selection on submit', () => {
@@ -121,7 +121,7 @@ describe('Select', () => {
 
       wrapper.find('.t-submit').simulate('click');
 
-      expect(onSubmit.mock.calls.length).toEqual(1);
+      expect(onSubmit.mock.calls.length).toBe(1);
       expect(onSubmit).toBeCalledWith(['10']);
     });
   });

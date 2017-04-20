@@ -25,8 +25,8 @@ describe('Quote', () => {
 
     const wrapper = mount(<Quote store={store} />);
 
-    expect(QuoteModule.getQuote.mock.calls.length).toEqual(1);
-    expect(wrapper.find('.t-quote').text()).toEqual('Loading');
+    expect(QuoteModule.getQuote.mock.calls.length).toBe(1);
+    expect(wrapper.find('.t-quote').text()).toBe('Loading');
   });
 
   it('displays a quote', () => {
@@ -38,8 +38,8 @@ describe('Quote', () => {
 
     const wrapper = mount(<Quote store={store} />);
 
-    expect(QuoteModule.getQuote.mock.calls.length).toEqual(1);
-    expect(wrapper.find('.t-quote').text()).toEqual('foo, baz');
+    expect(QuoteModule.getQuote.mock.calls.length).toBe(1);
+    expect(wrapper.find('.t-quote').text()).toBe('foo, baz');
   });
 
   // Test that the action creator is connected to the component
@@ -51,7 +51,7 @@ describe('Quote', () => {
     const wrapper = mount(<Quote store={store} />);
     wrapper.find('.t-fetch-quote').simulate('click');
 
-    expect(QuoteModule.fetchQuote.mock.calls.length).toEqual(1);
+    expect(QuoteModule.fetchQuote.mock.calls.length).toBe(1);
     expect(QuoteModule.fetchQuote).toBeCalledWith();
     expect(store.dispatch).toBeCalledWith(testFetchAction);
   });
