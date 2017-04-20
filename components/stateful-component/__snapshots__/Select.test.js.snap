@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown snapshot testing user can select options 1`] = `
+exports[`Select snapshot testing user can select options 1`] = `
 <form>
   <div
     className="t-selected-options"
@@ -55,7 +55,7 @@ exports[`Dropdown snapshot testing user can select options 1`] = `
 </form>
 `;
 
-exports[`Dropdown snapshot testing user can select options 2`] = `
+exports[`Select snapshot testing user can select options 2`] = `
 <form>
   <div
     className="t-selected-options"
@@ -110,7 +110,7 @@ exports[`Dropdown snapshot testing user can select options 2`] = `
 </form>
 `;
 
-exports[`Dropdown snapshot testing user can select options 3`] = `
+exports[`Select snapshot testing user can select options 3`] = `
 <form>
   <div
     className="t-selected-options"

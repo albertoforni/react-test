@@ -1,7 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
 import { mount } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
 import configureStore from './configureStore';
 import Quote from './Quote';
@@ -73,13 +72,13 @@ describe('Quote', () => {
       }));
 
       const wrapper = mount(<Quote store={store} />);
-      expect(toJson(wrapper.find('Quote'))).toMatchSnapshot();
+      expect(wrapper.find('Quote')).toMatchSnapshot();
 
       wrapper.find('.t-fetch-quote').simulate('click');
-      expect(toJson(wrapper.find('Quote'))).toMatchSnapshot();
+      expect(wrapper.find('Quote')).toMatchSnapshot();
 
       wrapper.find('.t-fetch-quote').simulate('click');
-      expect(toJson(wrapper.find('Quote'))).toMatchSnapshot();
+      expect(wrapper.find('Quote')).toMatchSnapshot();
     });
   });
 });

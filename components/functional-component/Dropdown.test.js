@@ -1,11 +1,8 @@
 /* eslint-env jest */
 import React from 'react';
 import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
 
-import Dropdown from './index';
-
-// TODO fail on prop types
+import Dropdown from './Dropdown';
 
 describe('Dropdown', () => {
   const defaultProps = {
@@ -55,13 +52,13 @@ describe('Dropdown', () => {
         { id: '21', text: 'Dybala' },
       ];
 
-      const tree = renderer.create(
+      const wrapper = shallow(
         <Dropdown
           {...defaultProps}
           options={options}
-        />).toJSON();
+        />);
 
-      expect(tree).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
     });
   });
 

@@ -1,11 +1,10 @@
 /* eslint-env jest */
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
-import Dropdown from './index';
+import Select from './Select';
 
-describe('Dropdown', () => {
+describe('Select', () => {
   const defaultProps = {
     options: [
       { id: '8', text: 'Conte' },
@@ -23,7 +22,7 @@ describe('Dropdown', () => {
       ];
 
       const component = shallow(
-        <Dropdown
+        <Select
           {...defaultProps}
           options={options}
         />);
@@ -37,7 +36,7 @@ describe('Dropdown', () => {
 
     it('renders the selected option', () => {
       const component = shallow(
-        <Dropdown
+        <Select
           {...defaultProps}
           selected={['10']}
         />);
@@ -51,7 +50,7 @@ describe('Dropdown', () => {
     describe('DONTS', () => {
       it('displays the selected items by changing state', () => {
         const component = shallow(
-          <Dropdown
+          <Select
             {...defaultProps}
             selected={['10']}
           />);
@@ -75,17 +74,17 @@ describe('Dropdown', () => {
       ];
 
       const wrapper = shallow(
-        <Dropdown
+        <Select
           {...defaultProps}
           options={options}
           selected={['1', '21']}
           onSubmit={onSubmit}
         />);
 
-      expect(toJson(wrapper)).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
 
       wrapper.find('.t-select').simulate('change', { target: { value: '10' } });
-      expect(toJson(wrapper)).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
 
       wrapper.find('.t-submit').simulate('click');
 
@@ -93,15 +92,15 @@ describe('Dropdown', () => {
       expect(onSubmit).toBeCalledWith(['1', '21', '10']);
 
       wrapper.find('.t-reset').simulate('click');
-      expect(toJson(wrapper)).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
     });
   });
 
 
-  describe('iteractions', () => {
+  describe('interactions', () => {
     it('clears the selection when clicking on reset', () => {
       const wrapper = shallow(
-        <Dropdown
+        <Select
           {...defaultProps}
           selected={['10']}
         />);
@@ -114,7 +113,7 @@ describe('Dropdown', () => {
     it('returns the new selection on submit', () => {
       const onSubmit = jest.fn();
       const wrapper = shallow(
-        <Dropdown
+        <Select
           {...defaultProps}
           selected={['10']}
           onSubmit={onSubmit}

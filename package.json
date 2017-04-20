@@ -11,6 +11,7 @@
   },
   "jest": {
     "setupFiles": ["./testsetup.js"],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
     "clearMocks": true
   },
   "dependencies": {
