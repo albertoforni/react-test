@@ -70,6 +70,7 @@ describe('Quote', () => {
         author: 'baz',
         loading: false,
       }));
+      QuoteModule.fetchQuote.mockImplementation(() => ({ type: 'TEST_JOURNEY' }));
 
       const wrapper = mount(<Quote store={store} />);
       expect(wrapper.find('Quote')).toMatchSnapshot();
@@ -79,6 +80,8 @@ describe('Quote', () => {
 
       wrapper.find('.t-fetch-quote').simulate('click');
       expect(wrapper.find('Quote')).toMatchSnapshot();
+
+      expect(QuoteModule.fetchQuote).toHaveBeenCalledTimes(2);
     });
   });
 });

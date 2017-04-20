@@ -3,16 +3,15 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import Quote from './Quote';
-import configureStore from './configureStore';
 import * as QuoteModule from './module';
 
+const store = {
+  subscribe() { },
+  dispatch() { },
+  getState() { },
+};
+
 describe('Quote', () => {
-  let store;
-
-  beforeEach(() => {
-    store = configureStore({});
-  });
-
   // TEST that the state is passed to the component
   it('displays a loading text', () => {
     QuoteModule.getQuote = jest.fn().mockReturnValue({
