@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Dropdown = props => (
   <select value={props.selected} onChange={e => props.onChange(e.target.value)}>

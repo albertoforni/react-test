@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { find, compose, map, prop, join, reduce } from 'ramda';
 
 const getSelectedTextByValues = (options, selected) => compose(

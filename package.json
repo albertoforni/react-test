@@ -9,6 +9,9 @@
     "test:dev": "jest --watch",
     "lint": "eslint -c .eslintrc.js components pages"
   },
+  "jest": {
+    "setupFiles": ["./testsetup.js"]
+  },
   "dependencies": {
     "next": "^2.1.1",
     "prop-types": "^15.5.8",
