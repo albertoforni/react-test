@@ -43,7 +43,7 @@ describe('Select', () => {
 
       expect(component.find('.t-selected-options').text()).toBe('Del Piero');
 
-      component.find('select').simulate('change', { target: { value: '1' } });
+      component.find('.t-select').simulate('change', { target: { value: '1' } });
       expect(component.find('.t-selected-options').text()).toBe('Del Piero, Buffon');
     });
 

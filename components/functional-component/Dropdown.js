@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Dropdown = props => (
-  <select value={props.selected} onChange={e => props.onChange(e.target.value)}>
-    { props.options.map(o => <option key={o.id} value={o.id}>{ o.text }</option>)}
+  <select
+    className="t-select"
+    value={props.selected}
+    onChange={e => props.onChange(e.target.value)}
+  >
+    { props.options.map(o =>
+      <option className="t-option" key={o.id} value={o.id}>{o.text}</option>)}
   </select>
 );
 

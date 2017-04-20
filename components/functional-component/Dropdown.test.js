@@ -28,7 +28,7 @@ describe('Dropdown', () => {
           options={options}
         />);
 
-      const optionTags = component.find('option');
+      const optionTags = component.find('.t-option');
       expect(optionTags.length).toBe(2);
       expect(optionTags.at(0).text()).toEqual(options[0].text);
       expect(optionTags.at(1).text()).toEqual(options[1].text);
@@ -41,7 +41,7 @@ describe('Dropdown', () => {
           selected="1"
         />);
 
-      expect(component.find('select').prop('value')).toEqual('1');
+      expect(component.find('.t-select').prop('value')).toEqual('1');
     });
   });
 
@@ -70,7 +70,7 @@ describe('Dropdown', () => {
         {...defaultProps}
         onChange={onChange}
       />);
-    component.find('select').simulate('change', { target: { value: '123' } });
+    component.find('.t-select').simulate('change', { target: { value: '123' } });
 
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange).toBeCalledWith('123');
