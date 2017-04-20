@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Quote journey with snapshot renders a quote 1`] = `
+exports[`Quote journey with snapshot loads and renders a quote 1`] = `
 <Quote
   onFetchQuote={[Function]}
   quote={
@@ -48,7 +48,7 @@ exports[`Quote journey with snapshot renders a quote 1`] = `
 </Quote>
 `;
 
-exports[`Quote journey with snapshot renders a quote 2`] = `
+exports[`Quote journey with snapshot loads and renders a quote 2`] = `
 <Quote
   onFetchQuote={[Function]}
   quote={
@@ -101,7 +101,7 @@ exports[`Quote journey with snapshot renders a quote 2`] = `
 </Quote>
 `;
 
-exports[`Quote journey with snapshot renders a quote 3`] = `
+exports[`Quote journey with snapshot loads and renders a quote 3`] = `
 <Quote
   onFetchQuote={[Function]}
   quote={

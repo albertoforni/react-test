@@ -2,7 +2,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import configureStore from './configureStore';
+import { createStore } from 'redux';
 import Quote from './Quote';
 import * as QuoteModule from './module';
 
@@ -14,10 +14,19 @@ describe('Quote', () => {
   beforeEach(() => {
     QuoteModule.quoteReducer.mockImplementation(() => ({}));
     QuoteModule.getQuote.mockImplementation(() => ({ loading: false }));
-    store = configureStore({});
+    store = createStore(() => ({}));
   });
 
   // Test that the state is passed to the component
+  it('gets values from the store', () => {
+    const storeState = 'a test state';
+    store.getState = jest.fn().mockReturnValue(storeState);
+
+    mount(<Quote store={store} />);
+
+    expect(QuoteModule.getQuote).toBeCalledWith(storeState);
+  });
+
   it('displays a loading text', () => {
     QuoteModule.getQuote.mockImplementation(() => ({
       loading: true,
@@ -25,7 +34,6 @@ describe('Quote', () => {
 
     const wrapper = mount(<Quote store={store} />);
 
-    expect(QuoteModule.getQuote.mock.calls.length).toBe(1);
     expect(wrapper.find('.t-quote').text()).toBe('Loading');
   });
 
@@ -38,7 +46,6 @@ describe('Quote', () => {
 
     const wrapper = mount(<Quote store={store} />);
 
-    expect(QuoteModule.getQuote.mock.calls.length).toBe(1);
     expect(wrapper.find('.t-quote').text()).toBe('foo, baz');
   });
 
@@ -51,13 +58,13 @@ describe('Quote', () => {
     const wrapper = mount(<Quote store={store} />);
     wrapper.find('.t-fetch-quote').simulate('click');
 
-    expect(QuoteModule.fetchQuote.mock.calls.length).toBe(1);
+    expect(QuoteModule.fetchQuote).toHaveBeenCalledTimes(1);
     expect(QuoteModule.fetchQuote).toBeCalledWith();
     expect(store.dispatch).toBeCalledWith(testFetchAction);
   });
 
   describe('journey with snapshot', () => {
-    it('renders a quote', () => {
+    it('loads and renders a quote', () => {
       QuoteModule.getQuote
       .mockImplementationOnce(() => ({
         loading: false,

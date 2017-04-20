@@ -12,7 +12,17 @@ const store = {
 };
 
 describe('Quote', () => {
-  // TEST that the state is passed to the component
+  // Test that the state is passed to the component
+  it('gets values from the store', () => {
+    QuoteModule.getQuote = jest.fn().mockReturnValue({ loading: false });
+    const storeState = 'a test state';
+    store.getState = jest.fn().mockReturnValue(storeState);
+
+    mount(<Quote store={store} />);
+
+    expect(QuoteModule.getQuote).toBeCalledWith(storeState);
+  });
+
   it('displays a loading text', () => {
     QuoteModule.getQuote = jest.fn().mockReturnValue({
       loading: true,
@@ -20,7 +30,6 @@ describe('Quote', () => {
 
     const wrapper = mount(<Quote store={store} />);
 
-    expect(QuoteModule.getQuote.mock.calls.length).toBe(1);
     expect(wrapper.find('.t-quote').text()).toBe('Loading');
   });
 
@@ -33,7 +42,6 @@ describe('Quote', () => {
 
     const wrapper = mount(<Quote store={store} />);
 
-    expect(QuoteModule.getQuote.mock.calls.length).toBe(1);
     expect(wrapper.find('.t-quote').text()).toBe('TDD is dead, DHH');
   });
 
