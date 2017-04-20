@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropdown from '../components/functional-component/index';
+import Dropdown from '../components/functional-component/Dropdown';
 
 class Values extends React.Component {
   constructor(props) {

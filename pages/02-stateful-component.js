@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropdown from '../components/stateful-component';
+import Select from '../components/stateful-component/Select';
 
 class Values extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Values extends React.Component {
   render() {
     return (
       <div>
-        <Dropdown
+        <Select
           options={this.state.options}
           onSubmit={() => {}}
         />

@@ -1,5 +1,5 @@
 import React from 'react';
-import Counter from '../components/connected-component';
+import Quote from '../components/connected-component';
 
-export default () => <Counter />;
+export default () => <Quote />;
 
