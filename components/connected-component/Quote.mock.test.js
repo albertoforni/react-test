@@ -18,10 +18,6 @@ describe('Quote', () => {
     store = configureStore({});
   });
 
-  afterEach(() => {
-    QuoteModule.getQuote.mockClear();
-  });
-
   // Test that the state is passed to the component
   it('displays a loading text', () => {
     QuoteModule.getQuote.mockImplementation(() => ({

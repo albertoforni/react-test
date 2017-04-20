@@ -10,7 +10,8 @@
     "lint": "eslint -c .eslintrc.js components pages"
   },
   "jest": {
-    "setupFiles": ["./testsetup.js"]
+    "setupFiles": ["./testsetup.js"],
+    "clearMocks": true
   },
   "dependencies": {
     "next": "^2.1.1",
