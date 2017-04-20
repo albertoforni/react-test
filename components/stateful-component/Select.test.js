@@ -63,8 +63,37 @@ describe('Select', () => {
     });
   });
 
+  describe('interactions', () => {
+    it('clears the selection when clicking on reset', () => {
+      const wrapper = shallow(
+        <Select
+          {...defaultProps}
+          selected={['10']}
+        />);
+
+      wrapper.find('.t-reset').simulate('click');
+
+      expect(wrapper.find('.t-selected-options').text()).toBe('');
+    });
+
+    it('returns the new selection on submit', () => {
+      const onSubmit = jest.fn();
+      const wrapper = shallow(
+        <Select
+          {...defaultProps}
+          selected={['10']}
+          onSubmit={onSubmit}
+        />);
+
+      wrapper.find('.t-submit').simulate('click');
+
+      expect(onSubmit.mock.calls.length).toBe(1);
+      expect(onSubmit).toBeCalledWith(['10']);
+    });
+  });
+
   describe('snapshot testing', () => {
-    it('user can select options', () => {
+    it('selects options', () => {
       const onSubmit = jest.fn();
       const options = [
         { id: '8', text: 'Conte' },
@@ -93,36 +122,6 @@ describe('Select', () => {
 
       wrapper.find('.t-reset').simulate('click');
       expect(wrapper).toMatchSnapshot();
-    });
-  });
-
-
-  describe('interactions', () => {
-    it('clears the selection when clicking on reset', () => {
-      const wrapper = shallow(
-        <Select
-          {...defaultProps}
-          selected={['10']}
-        />);
-
-      wrapper.find('.t-reset').simulate('click');
-
-      expect(wrapper.find('.t-selected-options').text()).toBe('');
-    });
-
-    it('returns the new selection on submit', () => {
-      const onSubmit = jest.fn();
-      const wrapper = shallow(
-        <Select
-          {...defaultProps}
-          selected={['10']}
-          onSubmit={onSubmit}
-        />);
-
-      wrapper.find('.t-submit').simulate('click');
-
-      expect(onSubmit.mock.calls.length).toBe(1);
-      expect(onSubmit).toBeCalledWith(['10']);
     });
   });
 });
