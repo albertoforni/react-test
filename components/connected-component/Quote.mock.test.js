@@ -1,8 +1,8 @@
 /* eslint-env jest */
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
 
-import { createStore } from 'redux';
 import Quote from './Quote';
 import * as QuoteModule from './module';
 
@@ -12,9 +12,8 @@ describe('Quote', () => {
   let store;
 
   beforeEach(() => {
-    QuoteModule.quoteReducer.mockImplementation(() => ({}));
     QuoteModule.getQuote.mockImplementation(() => ({ loading: false }));
-    store = createStore(() => ({}));
+    store = configureMockStore([])({});
   });
 
   // Test that the state is passed to the component
@@ -22,7 +21,7 @@ describe('Quote', () => {
     const storeState = 'a test state';
     store.getState = jest.fn().mockReturnValue(storeState);
 
-    mount(<Quote store={store} />);
+    shallow(<Quote store={store} />);
 
     expect(QuoteModule.getQuote).toBeCalledWith(storeState);
   });
@@ -32,7 +31,7 @@ describe('Quote', () => {
       loading: true,
     }));
 
-    const wrapper = mount(<Quote store={store} />);
+    const wrapper = shallow(<Quote store={store} />).shallow();
 
     expect(wrapper.find('.t-quote').text()).toBe('Loading');
   });
@@ -44,7 +43,7 @@ describe('Quote', () => {
       loading: false,
     }));
 
-    const wrapper = mount(<Quote store={store} />);
+    const wrapper = shallow(<Quote store={store} />).shallow();
 
     expect(wrapper.find('.t-quote').text()).toBe('foo, baz');
   });
@@ -53,14 +52,13 @@ describe('Quote', () => {
   it('calls fetchQuote when the "Get Quote" button is clicked', () => {
     const testFetchAction = { type: 'TEST_FETCH' };
     QuoteModule.fetchQuote.mockImplementation(() => testFetchAction);
-    store.dispatch = jest.fn();
 
-    const wrapper = mount(<Quote store={store} />);
+    const wrapper = shallow(<Quote store={store} />).shallow();
     wrapper.find('.t-fetch-quote').simulate('click');
 
     expect(QuoteModule.fetchQuote).toHaveBeenCalledTimes(1);
     expect(QuoteModule.fetchQuote).toBeCalledWith();
-    expect(store.dispatch).toBeCalledWith(testFetchAction);
+    expect(store.getActions()).toEqual([testFetchAction]);
   });
 
   describe('journey with snapshot', () => {
@@ -79,16 +77,14 @@ describe('Quote', () => {
       }));
       QuoteModule.fetchQuote.mockImplementation(() => ({ type: 'TEST_JOURNEY' }));
 
-      const wrapper = mount(<Quote store={store} />);
-      expect(wrapper.find('Quote')).toMatchSnapshot();
+      const wrapper = shallow(<Quote store={store} />).shallow();
+      expect(wrapper.children()).toMatchSnapshot();
 
       wrapper.find('.t-fetch-quote').simulate('click');
-      expect(wrapper.find('Quote')).toMatchSnapshot();
+      expect(wrapper.children()).toMatchSnapshot();
+      expect(wrapper.children()).toMatchSnapshot();
 
-      wrapper.find('.t-fetch-quote').simulate('click');
-      expect(wrapper.find('Quote')).toMatchSnapshot();
-
-      expect(QuoteModule.fetchQuote).toHaveBeenCalledTimes(2);
+      expect(QuoteModule.fetchQuote).toHaveBeenCalledTimes(1);
     });
   });
 });

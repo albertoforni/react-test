@@ -1,24 +1,24 @@
 /* eslint-env jest */
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
 
 import Quote from './Quote';
 import * as QuoteModule from './module';
 
-const store = {
-  subscribe() { },
-  dispatch() { },
-  getState() { },
-};
-
 describe('Quote', () => {
+  let store;
+  beforeEach(() => {
+    store = configureMockStore([])({});
+  });
+
   // Test that the state is passed to the component
   it('gets values from the store', () => {
     QuoteModule.getQuote = jest.fn().mockReturnValue({ loading: false });
     const storeState = 'a test state';
     store.getState = jest.fn().mockReturnValue(storeState);
 
-    mount(<Quote store={store} />);
+    shallow(<Quote store={store} />);
 
     expect(QuoteModule.getQuote).toBeCalledWith(storeState);
   });
@@ -28,7 +28,7 @@ describe('Quote', () => {
       loading: true,
     });
 
-    const wrapper = mount(<Quote store={store} />);
+    const wrapper = shallow(<Quote store={store} />).shallow();
 
     expect(wrapper.find('.t-quote').text()).toBe('Loading');
   });
@@ -40,7 +40,7 @@ describe('Quote', () => {
       loading: false,
     });
 
-    const wrapper = mount(<Quote store={store} />);
+    const wrapper = shallow(<Quote store={store} />).shallow();
 
     expect(wrapper.find('.t-quote').text()).toBe('TDD is dead, DHH');
   });
@@ -49,13 +49,12 @@ describe('Quote', () => {
   it('calls fetchQuote when the "Get Quote" button is clicked', () => {
     const testFetchAction = { type: 'TEST_FETCH' };
     QuoteModule.fetchQuote = jest.fn().mockReturnValue(testFetchAction);
-    store.dispatch = jest.fn();
 
-    const wrapper = mount(<Quote store={store} />);
+    const wrapper = shallow(<Quote store={store} />).shallow();
 
     wrapper.find('.t-fetch-quote').simulate('click');
-    expect(QuoteModule.fetchQuote.mock.calls.length).toBe(1);
+    expect(QuoteModule.fetchQuote).toHaveBeenCalledTimes(1);
     expect(QuoteModule.fetchQuote).toBeCalledWith();
-    expect(store.dispatch).toBeCalledWith(testFetchAction);
+    expect(store.getActions()).toEqual([testFetchAction]);
   });
 });
