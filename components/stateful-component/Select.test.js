@@ -34,19 +34,6 @@ describe('Select', () => {
       expect(wrapper.find('.t-selected-options').text()).toBe('');
     });
 
-    it('renders the selected option', () => {
-      const wrapper = shallow(
-        <Select
-          {...defaultProps}
-          selected={['10']}
-        />);
-
-      expect(wrapper.find('.t-selected-options').text()).toBe('Del Piero');
-
-      wrapper.find('.t-select').simulate('change', { target: { value: '1' } });
-      expect(wrapper.find('.t-selected-options').text()).toBe('Del Piero, Buffon');
-    });
-
     describe('DONTS', () => {
       it('displays the selected items by changing state', () => {
         const wrapper = shallow(
@@ -64,12 +51,27 @@ describe('Select', () => {
   });
 
   describe('interactions', () => {
+    it('renders the selected option', () => {
+      const wrapper = shallow(
+        <Select
+          {...defaultProps}
+          selected={['10']}
+        />);
+
+      expect(wrapper.find('.t-selected-options').text()).toBe('Del Piero');
+
+      wrapper.find('.t-select').simulate('change', { target: { value: '1' } });
+      expect(wrapper.find('.t-selected-options').text()).toBe('Del Piero, Buffon');
+    });
+
     it('clears the selection when clicking on reset', () => {
       const wrapper = shallow(
         <Select
           {...defaultProps}
           selected={['10']}
         />);
+
+      expect(wrapper.find('.t-selected-options').text()).toBe('Del Piero');
 
       wrapper.find('.t-reset').simulate('click');
 
@@ -116,7 +118,6 @@ describe('Select', () => {
       expect(wrapper).toMatchSnapshot();
 
       wrapper.find('.t-submit').simulate('click');
-
       expect(onSubmit.mock.calls.length).toBe(1);
       expect(onSubmit).toBeCalledWith(['1', '21', '10']);
 
